@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Sitemap cho GitHub Pages
+Sitemap: https://hcroblox.github.io/Rain-Code-Online/sitemap.xml
+
+# Không cần chặn gì vì đây là web public
