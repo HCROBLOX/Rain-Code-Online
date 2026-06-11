@@ -1,37 +1,286 @@
 <!doctype html>
-<html lang=vi>
+<html lang="vi">
 <head>
-<meta charset=UTF-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<title>🌧️Rain Editor Stable</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Consolas,monospace}body{height:100vh;display:flex;flex-direction:column;background:#05070f;color:#e6edf3}.filebar{height:34px;display:flex;align-items:center;gap:10px;padding:0 10px;background:rgba(20,25,40,.65);border-bottom:1px solid rgba(0,255,255,.15);font-size:12px}.file-item{color:#00f5ff;cursor:pointer;padding:3px 6px;border-radius:5px}.file-item.active{background:rgba(0,255,255,.15)}.menu-wrap{position:relative}.menu-btn{cursor:pointer;color:#00f5ff;padding:4px 8px;background:rgba(0,255,255,.05);border-radius:6px}.menu{position:absolute;top:30px;left:0;background:#0a0f1f;border:1px solid rgba(0,255,255,.2);border-radius:8px;display:none;flex-direction:column;padding:8px;gap:6px;z-index:9999}.menu input{padding:6px;border:none;outline:0;background:#05070f;color:#0fc;border-radius:6px;width:140px}.menu button{padding:6px;border:none;background:linear-gradient(135deg,#00f5ff,#7c3aed);color:#fff;border-radius:6px;cursor:pointer;font-size:12px}.toolbar{height:42px;display:flex;justify-content:space-between;align-items:center;padding:0 10px;background:rgba(20,25,40,.65);border-bottom:1px solid rgba(0,255,255,.15)}.actions{display:flex;gap:8px}button.action{background:linear-gradient(135deg,#00f5ff,#7c3aed);border:none;color:#fff;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700}iframe,textarea{flex:1;width:100%;border:none;outline:0}textarea{background:#05070f;color:#0fc;padding:15px;font-size:14px;line-height:1.5;resize:none}iframe{background:#fff;display:none}.hidden{display:none!important}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<!-- SEO -->
+<title>🌧️ Rain Editor - HTML Code Editor Online</title>
+<meta name="description" content="Rain Editor - Trình chỉnh sửa HTML online mạnh mẽ, hỗ trợ run code, preview realtime, lưu file và quản lý project trực tiếp trên trình duyệt.">
+<meta name="keywords" content="html editor, online code editor, javascript editor, web editor, rain editor">
+<meta name="author" content="Rain Editor">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://example.com/rain-editor">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Rain Editor - HTML Editor Online">
+<meta property="og:description" content="Code HTML online, preview realtime, lưu file và quản lý project dễ dàng.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/rain-editor">
+<meta property="og:image" content="https://example.com/preview.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rain Editor">
+<meta name="twitter:description" content="HTML editor online mạnh mẽ với preview realtime.">
+<meta name="twitter:image" content="https://example.com/preview.png">
+
+<!-- Favicon / Logo -->
+<link rel="icon" href="logo.png" type="image/png">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Consolas,monospace}
+body{height:100vh;display:flex;flex-direction:column;background:#05070f;color:#e6edf3}
+
+/* FILE BAR */
+.filebar{
+  height:34px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 10px;
+  background:rgba(20,25,40,.65);
+  border-bottom:1px solid rgba(0,255,255,.15);
+  font-size:12px;
+}
+
+/* LOGO */
+.logo{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-weight:700;
+  color:#00f5ff;
+}
+.logo img{
+  width:18px;
+  height:18px;
+}
+
+/* FILE ITEM */
+.file-item{color:#00f5ff;cursor:pointer;padding:3px 6px;border-radius:5px}
+.file-item.active{background:rgba(0,255,255,.15)}
+
+.menu-wrap{position:relative}
+.menu-btn{cursor:pointer;color:#00f5ff;padding:4px 8px;background:rgba(0,255,255,.05);border-radius:6px}
+
+.menu{
+  position:absolute;
+  top:30px;
+  left:0;
+  background:#0a0f1f;
+  border:1px solid rgba(0,255,255,.2);
+  border-radius:8px;
+  display:none;
+  flex-direction:column;
+  padding:8px;
+  gap:6px;
+  z-index:9999;
+}
+
+.menu input{
+  padding:6px;
+  border:none;
+  outline:0;
+  background:#05070f;
+  color:#0fc;
+  border-radius:6px;
+  width:140px;
+}
+
+.menu button{
+  padding:6px;
+  border:none;
+  background:linear-gradient(135deg,#00f5ff,#7c3aed);
+  color:#fff;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:12px;
+}
+
+/* TOOLBAR */
+.toolbar{
+  height:42px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 10px;
+  background:rgba(20,25,40,.65);
+  border-bottom:1px solid rgba(0,255,255,.15);
+}
+
+.actions{display:flex;gap:8px}
+
+button.action{
+  background:linear-gradient(135deg,#00f5ff,#7c3aed);
+  border:none;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:700;
+}
+
+iframe,textarea{flex:1;width:100%;border:none;outline:0}
+
+textarea{
+  background:#05070f;
+  color:#0fc;
+  padding:15px;
+  font-size:14px;
+  line-height:1.5;
+  resize:none;
+}
+
+iframe{background:#fff;display:none}
+
+.hidden{display:none!important}
+</style>
 </head>
+
 <body>
-<div class=filebar>
-<div class=menu-wrap>
-<div class=menu-btn onclick=toggleMenu()>☰</div>
-<div class=menu id=menu>
-<input id=fileName placeholder=new.html>
-<button onclick=createFile()>+ Create</button>
+
+<!-- FILE BAR + LOGO -->
+<div class="filebar">
+  <div class="menu-wrap">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+      <input id="fileName" placeholder="new.html">
+      <button onclick="createFile()">+ Create</button>
+    </div>
+  </div>
+
+  <!-- LOGO HIỂN THỊ -->
+  <div class="logo">
+    <img src="logo.png" alt="Rain Editor Logo">
+    Rain Editor
+  </div>
+
+  <div id="files"></div>
 </div>
+
+<!-- TOOLBAR -->
+<div class="toolbar" id="editorBar">
+  <div style="display:flex;align-items:center;gap:6px;color:#00f5ff;font-weight:700">
+    ⚡ Editor
+  </div>
+
+  <div class="actions">
+    <button class="action" onclick="runCode()">▶ Run</button>
+    <button class="action" onclick="saveFile()">💾 Save</button>
+  </div>
 </div>
-<div id=files></div>
+
+<div class="toolbar hidden" id="previewBar">
+  <div style="color:#00f5ff;font-weight:700">⭐ Preview</div>
+  <div class="actions">
+    <button class="action" onclick="back()">🔙 Back</button>
+  </div>
 </div>
-<div class=toolbar id=editorBar>
-<div style=color:#00f5ff;font-weight:700>⚡ Editor</div>
-<div class=actions>
-<button class=action onclick=runCode()>▶ Run</button>
-<button class=action onclick=saveFile()>💾 Save</button>
-</div>
-</div>
-<div class="toolbar hidden" id=previewBar>
-<div style=color:#00f5ff;font-weight:700>⭐ Preview</div>
-<div class=actions>
-<button class=action onclick=back()>🔙 Back</button>
-</div>
-</div>
-<textarea id=code></textarea>
-<iframe id=preview></iframe>
-<script>const code=document.getElementById("code"),preview=document.getElementById("preview"),fileUI=document.getElementById("files"),menu=document.getElementById("menu"),fileName=document.getElementById("fileName"),editorBar=document.getElementById("editorBar"),previewBar=document.getElementById("previewBar");let files=JSON.parse(localStorage.getItem("files"))||{},current="index.html";const def=e=>`<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8">\n<title>${e}</title>\n</head>\n<body style="background:black;color:white;text-align:center;">\n<h1>⚡ ${e}</h1>\n</body>\n</html>`;function render(){fileUI.innerHTML="";for(let e in files){let t=document.createElement("span");t.innerText=e,t.className="file-item"+(e===current?" active":""),t.onclick=()=>{files[current]=code.value,current=e,code.value=files[e],render()},fileUI.appendChild(t)}}function toggleMenu(){menu.style.display="flex"===menu.style.display?"none":"flex"}function createFile(){let e=fileName.value.trim();if(!e)return alert("Nhập tên file!");if(e.endsWith(".html")||(e+=".html"),files[e])return void alert("File tồn tại!");files[e]=def(e),current=e,code.value=files[e],localStorage.setItem("files",JSON.stringify(files)),render();let t=new Blob([files[e]],{type:"text/html"}),l=document.createElement("a");l.href=URL.createObjectURL(t),l.download=e,l.click(),URL.revokeObjectURL(l.href),fileName.value="",menu.style.display="none"}function runCode(){preview.srcdoc=code.value,code.style.display="none",preview.style.display="block",editorBar.classList.add("hidden"),previewBar.classList.remove("hidden")}function back(){preview.style.display="none",code.style.display="block",editorBar.classList.remove("hidden"),previewBar.classList.add("hidden")}function saveFile(){let e=new Blob([code.value],{type:"text/html"}),t=document.createElement("a");t.href=URL.createObjectURL(e),t.download=current,t.click(),URL.revokeObjectURL(t.href)}files[current]||(files[current]=def(current)),code.value=files[current],render(),code.addEventListener("input",(()=>{files[current]=code.value,localStorage.setItem("files",JSON.stringify(files))}))</script>
+
+<textarea id="code"></textarea>
+<iframe id="preview"></iframe>
+
+<script>
+const code=document.getElementById("code"),
+preview=document.getElementById("preview"),
+fileUI=document.getElementById("files"),
+menu=document.getElementById("menu"),
+fileName=document.getElementById("fileName"),
+editorBar=document.getElementById("editorBar"),
+previewBar=document.getElementById("previewBar");
+
+let files=JSON.parse(localStorage.getItem("files"))||{},
+current="index.html";
+
+const def=e=>`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>${e}</title>
+</head>
+<body style="background:black;color:white;text-align:center;">
+<h1>⚡ ${e}</h1>
+</body>
+</html>`;
+
+function render(){
+fileUI.innerHTML="";
+for(let e in files){
+let t=document.createElement("span");
+t.innerText=e;
+t.className="file-item"+(e===current?" active":"");
+t.onclick=()=>{
+files[current]=code.value;
+current=e;
+code.value=files[e];
+render();
+};
+fileUI.appendChild(t);
+}
+}
+
+function toggleMenu(){
+menu.style.display=menu.style.display==="flex"?"none":"flex"
+}
+
+function createFile(){
+let e=fileName.value.trim();
+if(!e)return alert("Nhập tên file!");
+if(!e.endsWith(".html"))e+=".html";
+if(files[e])return alert("File tồn tại!");
+
+files[e]=def(e);
+current=e;
+code.value=files[e];
+localStorage.setItem("files",JSON.stringify(files));
+render();
+
+let t=new Blob([files[e]],{type:"text/html"});
+let l=document.createElement("a");
+l.href=URL.createObjectURL(t);
+l.download=e;
+l.click();
+URL.revokeObjectURL(l.href);
+
+fileName.value="";
+menu.style.display="none";
+}
+
+function runCode(){
+preview.srcdoc=code.value;
+code.style.display="none";
+preview.style.display="block";
+editorBar.classList.add("hidden");
+previewBar.classList.remove("hidden");
+}
+
+function back(){
+preview.style.display="none";
+code.style.display="block";
+editorBar.classList.remove("hidden");
+previewBar.classList.add("hidden");
+}
+
+function saveFile(){
+let e=new Blob([code.value],{type:"text/html"});
+let t=document.createElement("a");
+t.href=URL.createObjectURL(e);
+t.download=current;
+t.click();
+URL.revokeObjectURL(t.href);
+}
+
+files[current]||(files[current]=def(current));
+code.value=files[current];
+render();
+
+code.addEventListener("input",()=>{
+files[current]=code.value;
+localStorage.setItem("files",JSON.stringify(files));
+});
+</script>
+
 </body>
   </html>
